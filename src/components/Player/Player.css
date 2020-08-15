@@ -1,15 +1,36 @@
+ .Player__name, .Player__score, .Player__button {
+    border: solid 1px black;
+ 
+}
+
 .Player {
-
+    height: 30px;
+    background-color: lime;
+    line-height: 30px;
+    font-size: 15px;
+    list-style: none;
+    z-index: 2;
 }
 
-Player-name {
-
+.Player__name {
+    width: 150px;
+    font-weight: 900;
+    padding-right: 7px;
 }
 
-Player-score {
-
+.Player__name:first-child {
+    padding-left: 5px;
 }
 
-Player-button {
-    
+.Player__score {
+    text-align: right;
+    padding-right: 5px;
+    font-weight: 600;
+}
+
+.Player__button {
+    height: 30px;
+    background-color: lightskyblue;
+    border-radius: 5%;
+    text-align: center;
 }
