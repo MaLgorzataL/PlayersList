@@ -39,11 +39,26 @@ it('renders correct name', () => {
     const mockedOnPlayerScoreChange = jest.fn();
     const playerComponent = shallow(<Player onPlayerScoreChange={mockedOnPlayerScoreChange} />);
   
-    const minusButton = playerComponent.find('.Player__button').last();
+    const minusButton = playerComponent.find('.Player__button').at(1);
   
     minusButton.simulate('click');
   
     expect(mockedOnPlayerScoreChange).toBeCalledWith(-1);
   });
+
+
+  it('should call onPlayerRemove with index of player when Trashcan button is clicked', () => {
+    const mockedOnPlayerRemove = jest.fn();
+    const playerComponent = shallow(<Player onPlayerRemove={mockedOnPlayerRemove} />);
+     
+    const trashcanButton = playerComponent.find('.Player__button').at(2);
+    const playerIndex = 1;
+  
+    trashcanButton.simulate('click');
+  
+    expect(mockedOnPlayerRemove).toBeCalledWith(1);
+  });
+
+
   
   

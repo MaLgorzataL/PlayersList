@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Player from '../Player/Player';
 import './PlayersList.css';
+import '../Player/Player.css';
 
+export default function PlayersList(props) {
+    let playersNode;
 
-const PlayersList = (props) => (
-    
+    const chooseRandomColor = (colors) => {
+        let randomColor = Math.floor(
+          Math.random() * colors.length);
+        return props.colors[randomColor];
+      };
+      
+    // Podobnie do metod componentDidMount i componentDidUpdate:  
+    useEffect(() => {    // Zmień kolor tła  });
+      if (props.players.length>0) {
+        let playersNode = document.querySelectorAll(".Player");
+        let thisplayer = playersNode.length-1;
+        playersNode[thisplayer].style.background = chooseRandomColor(props.colors);
+      }
+    });
+
+ return (   
    <ul className="PlayersList">
        {props.players.map((player, i) => (
            <Player
@@ -12,12 +29,13 @@ const PlayersList = (props) => (
                playerIndex={i}
                name={player.name}
                score={player.score}
-               color={props.colors[i]}
                onPlayerScoreChange={(points) => props.onScoreUpdate(i, points)}
-               onPlayerRemove={props.onPlayerRemove}
-           />)
+               onPlayerRemove={(playerIndex) => props.onPlayerRemove(playerIndex)}
+           />
+           // Zmień tło
+           )
        )}
    </ul>
-);
+ )
+}
 
-export default PlayersList;

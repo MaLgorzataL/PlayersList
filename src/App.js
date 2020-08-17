@@ -18,8 +18,8 @@ class App extends Component {
           score: 10000,
         }
       ],
-      colors: ['maroon', 'red', 'purple', 'fuchsia','green', 'lime', 
-                'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua'
+      colors: ['red', 'purple', 'fuchsia','green', 'lime', 
+                'olive', 'yellow', 'blue', 'teal', 'aqua'
               ],
       number: 0,
       backgroundColor: 'white'
@@ -30,7 +30,7 @@ class App extends Component {
     this.setState({
       players: this.state.players.map((player, index) => {
         if (index === playerIndex) {
-          return { ...player, score: player.score + scoreChange };
+        return { ...player, score: player.score + scoreChange };
         }
         return player;
       })
@@ -48,23 +48,15 @@ class App extends Component {
   }
 
   onPlayerRemove = (playerIndex) => {
-    alert('playerIndex '+playerIndex);
-    this.setState({
-      players: this.state.players.filter((player, index) => {
-        if (index !== playerIndex) {
+    if (this.state.players !== []) {
+      this.setState({
+        players: this.state.players.filter((player, index) => {
+          if (index !== playerIndex) {
           return { ...player};
-        }
-        return playerIndex;
-      })
-    })
-  };
-
-  chooseRandomColor() {
-    const randomColor = Math.floor(
-      Math.random() * this.state.colors.length
-    );
-    alert('randomColor '+randomColor);
-    return this.state.colors[randomColor];
+          } else this.state.players.splice(index,0);
+        })
+      });
+    }
   };
  
   render() {
@@ -77,7 +69,6 @@ class App extends Component {
           colors={this.state.colors}
           onScoreUpdate={this.onScoreUpdate} 
           onPlayerRemove={this.onPlayerRemove}
-          chooseRandomColor={this.chooseRandomColor}
         />
       </div>
     );
