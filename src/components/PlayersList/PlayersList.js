@@ -13,13 +13,13 @@ export default function PlayersList(props) {
       };
       
     // Podobnie do metod componentDidMount i componentDidUpdate:  
-    useEffect(() => {    // Zmień kolor tła  });
-      if (props.players.length>0) {
+    useEffect(() => {    // Zmień kolor tła 
+      if (props.players.length>0)  {
         let playersNode = document.querySelectorAll(".Player");
-        let thisplayer = playersNode.length-1;
+        let thisplayer = playersNode.length-1; //Kolorowanie utworzonego węzła tylko przy tworzeniu i usuwaniu
         playersNode[thisplayer].style.background = chooseRandomColor(props.colors);
       }
-    });
+    },[props.players.length]);
 
  return (   
    <ul className="PlayersList">
